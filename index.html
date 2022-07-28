@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Tip calculator app</title>
+
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: hsl(185, 41%, 84%);
+      font-family: 'Space Mono', monospace;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 15px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      width: 650px;
+      height: 350px;
+      background-color: hsl(189, 41%, 97%);
+      padding: 25px;
+      border-radius: 15px;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      height: 300px;
+      justify-content: space-between;
+      color: hsl(184, 14%, 56%);
+      font-size: 13px;
+      /* padding-right: 25px; */
+    }
+
+    .input {
+      height: 35px;
+      background-color: hsl(184, 14%, 90%);
+      border-radius: 5px;
+      width: 275px;
+    }
+
+    /* romoving arrow spinners */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .results {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: hsl(183, 100%, 15%);
+      padding: 25px;
+      border-radius: 15px;
+    }
+
+    .cal-tip-body {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .tip-total {
+      display: flex;
+      justify-content: space-between;
+      width: 250px;
+    }
+
+    #reset-btn {
+      /* width: 250px; */
+      height: 35px;
+      padding-top: 5px;
+      text-align: center;
+      background-color: hsl(172, 67%, 45%);
+      border-radius: 5px;
+    }
+
+    #reset-btn:hover {
+      background-color: hsl(172, 67%, 65%);
+    }
+
+    .tip-body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .btn-body {
+      padding-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    #custom-tip {
+      background-color: hsl(184, 14%, 90%);
+      font-family: 'Space mono', monospace;
+      text-align: center;
+      border: none;
+      outline: none;
+      color: hsl(172, 67%, 45%);
+    }
+
+    .tip-btns {
+      height: 32px;
+      width: 83px;
+      color: hsl(184, 14%, 90%);
+      background-color: hsl(183, 100%, 15%);
+      font-family: 'Space Mono', monospace;
+      border-radius: 5px;
+      font-size: 16px;
+      border: none;
+    }
+
+    .tip-btns:hover {
+      background-color: hsl(172, 67%, 65%);
+      color: hsl(183, 100%, 15%);
+    }
+
+    .tip-total h1 {
+      color: hsl(172, 67%, 45%);
+    }
+
+    .per h5 {
+      color: hsl(189, 41%, 97%);
+      font-size: 12px;
+    }
+
+    .per span {
+      color: hsl(184, 14%, 56%);
+      font-size: 10px;
+    }
+
+    #bill,
+    #people {
+      font-family: 'Space mono', monospace;
+      color: hsl(183, 100%, 15%);
+      padding: 10px;
+      font-size: 18px;
+      background-repeat: no-repeat;
+      background-position: left;
+      background-position-x: 10px;
+      text-align: right;
+      border: none;
+    }
+
+    #bill {
+      background-image: url(images/icon-dollar.svg);
+      outline-color: hsl(183, 100%, 35%);
+    }
+
+    #people {
+      background-image: url(images/icon-person.svg);
+      outline-color: hsl(0, 100%, 35%);
+    }
+
+    #warning-label {
+      color: red;
+      opacity: 0.5;
+      float: right;
+      font-size: 12px;
+    }
+
+    @media (max-width:660px) {
+      .container {
+        flex-direction: column;
+        width: 400px;
+        height: 550px;
+      }
+
+      .form {
+        height: 250px;
+      }
+
+      #reset-btn {
+        width: 100%;
+        padding-bottom: 5px;
+      }
+
+      .bill-input {
+        width: 100%;
+      }
+
+      .input {
+        width: 320px;
+      }
+
+      .tip-body {
+        width: 100%;
+      }
+
+      .tip-total {
+        width: 100%;
+      }
+
+      #bill,
+      #people {
+        width: 320px;
+      }
+
+      .cal-tip-body {
+        height: 140px;
+      }
+    }
+
+    @media (max-width:440px) {
+      .container {
+        width: 300px;
+        height: 450px;
+      }
+.tip-btns{
+  height: 35px;
+  width: 72px;
+}
+      #bill,
+      #people {
+        width: 250px;
+      }
+      .btn-body {
+        column-gap: 15px;
+      }
+      .results{
+        height: 200px;
+        padding: 20px;
+        overflow: hidden;
+      }
+      .container{
+        height: 560px;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      .header{
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="header"><img src="images/logo.svg" alt="logo"></div>
+
+    <div class="container">
+      <div class="form-container">
+        <div class="form">
+          <div class="bill-input">
+            <label for="bill">BILL</label>
+            <input id="bill" class="input" type="number" placeholder="0">
+          </div>
+          <div class="tip-body">
+            <label for="custom-tip">Select Tip %</label>
+            <div class="btn-body">
+              <button class="tip-btns">5%</button><button class="tip-btns">10%</button><button
+                class="tip-btns">15%</button><button class="tip-btns">25%</button><button
+                class="tip-btns">50%</button><input class="tip-btns" value="" id="custom-tip" placeholder="Custom">
+            </div>
+          </div>
+          <div class="people-count">
+            <div class="people-label">
+              <label for="people">Number of People</label>
+              <label for="people" id="warning-label"><sup>*</sup>Can't be zero</label>
+            </div>
+            <input id="people" class="input" type="number" placeholder="0">
+          </div>
+        </div>
+      </div>
+
+      <div class="results">
+        <div class="cal-tip-body">
+          <div class="tip-total">
+            <div class="per">
+              <h5>Tip Amount</h5><span>/ person</span>
+            </div>
+            <h1>$0.00</h1>
+          </div>
+          <div class="tip-total">
+            <div class="per">
+              <h5>Total</h5><span>/ person</span>
+            </div>
+            <h1>$0.00</h1>
+          </div>
+        </div>
+        <button id="reset-btn" style="border:none; font-size:16px;">RESET</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const billValue = document.getElementById('bill');
+    const peopleCount = document.getElementById('people');
+    const tipPercent = document.querySelectorAll(".tip-btns");
+const customTip = document.getElementById('custom-tip');
+    const tipAmount = document.getElementsByTagName('h1');
+    const resetBtn = document.getElementById('reset-btn');
+const resetter = 1;
+
+    for (let i = 0; i < tipPercent.length; i++) {
+
+      tipPercent[i].addEventListener('click', function () {
+        let tipPercentValue = tipPercent[i].innerText;
+        if (tipPercentValue == '5%') {
+          tipPercentValue = tipPercentValue.slice(0, 1);
+          
+        } else {
+          tipPercentValue = tipPercentValue.slice(0, 2);
+          
+        }
+  
+result(tipPercentValue,1,'');
+      
+      });
+
+    }
+      
+customTip.addEventListener('input',function(){
+  const customTipValue = customTip.value; 
+    result(customTipValue,1,'');
+})
+
+function result(tipPercentValue,resetter,set){
+  if (peopleCount.value > 1) {
+            tipAmount[0].innerText ='$' + set + resetter*((parseInt(tipPercentValue)*parseInt(billValue.value)/100)/parseInt(peopleCount.value)).toFixed(2);
+            
+            tipAmount[1].innerText ='$' + set + resetter*((parseInt(billValue.value) + parseInt(tipPercentValue)*parseInt(billValue.value)/100) / peopleCount.value).toFixed(2);
+            
+          } else{
+            alert("there should atleat be 2 people");
+          }
+}
+
+resetBtn.addEventListener('click',()=>{
+ result(resetter,0,'0.0');
+ billValue.value = '';
+ peopleCount.value = '';
+})    
+   
+    
+
+
+  
+
+  </script>
+
+</body>
+
+</html>
