@@ -20,8 +20,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [solution URL]()
-- Live Site URL: [live site URL]()
+- Solution URL: [solution URL](https://www.frontendmentor.io/solutions/tipcalculator-app-using-javascript--wR29sFn3E)
+- Live Site URL: [live site URL](https://ram0o7.github.io/tip-calculator-app/)
 
 
 ## Author
